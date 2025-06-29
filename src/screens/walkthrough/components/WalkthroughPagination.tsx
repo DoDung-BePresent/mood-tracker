@@ -24,8 +24,8 @@ const WalkthroughPagination: React.FC<WalkthroughPaginationProps> = ({
         <View
           key={index}
           className={cn(
-            "h-2 rounded mx-1",
-            index === currentIndex ? "w-6 bg-primary" : "w-2 bg-border"
+            "h-2 rounded-full mx-1",
+            index === currentIndex ? "w-6 bg-primary" : "w-2 bg-slate-100"
           )}
         />
       ))}

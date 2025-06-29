@@ -21,6 +21,7 @@ import { RootStackParamList } from "@/types/navigation";
  * Utils
  */
 import { cn } from "@/utils/cn";
+import Button from "@/components/ui/Button";
 
 const walkthroughData = [
   {
@@ -90,7 +91,7 @@ const WalkthroughScreen: React.FC<Props> = ({ navigation }) => {
       />
 
       {/* Bottom section */}
-      <View className="px-5 pb-10">
+      <View className="pb-5">
         {/* Pagination */}
         <WalkthroughPagination
           data={walkthroughData}
@@ -98,22 +99,18 @@ const WalkthroughScreen: React.FC<Props> = ({ navigation }) => {
         />
 
         {/* Action buttons */}
-        <View className="flex-row justify-between items-center">
-          <TouchableOpacity onPress={handleSkip} className="py-3 px-4">
-            <Text className="text-base font-medium text-textMuted">Skip</Text>
-          </TouchableOpacity>
+        <View className="flex-row gap-5 px-5 justify-between items-center border-t border-border pt-5">
+          <Button variant="secondary" onPress={handleSkip}>
+            Skip
+          </Button>
 
-          <TouchableOpacity
+          <Button
+            variant="primary"
             onPress={handleNext}
-            className={cn(
-              "py-3 px-6 rounded-lg min-w-[120px] items-center",
-              "bg-primary"
-            )}
+            className="min-w-[120px]"
           >
-            <Text className="text-base font-semibold text-white">
-              {isLastSlide ? "Let's Get Started" : "Continue"}
-            </Text>
-          </TouchableOpacity>
+            {isLastSlide ? "Let's Get Started" : "Continue"}
+          </Button>
         </View>
       </View>
     </Container>

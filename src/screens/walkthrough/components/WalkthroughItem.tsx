@@ -8,6 +8,7 @@ import {
   Image,
   ImageSourcePropType,
   Dimensions,
+  ImageBackground,
 } from "react-native";
 
 interface WalkthroughItemProps {
@@ -19,29 +20,31 @@ interface WalkthroughItemProps {
   };
 }
 
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 
 const WalkthroughItem: React.FC<WalkthroughItemProps> = ({ item }) => {
   return (
-    <View className="items-center px-5 pt-15" style={{ width: width }}>
-      <View className="flex-1 justify-center items-center mb-10">
-        <Image
+    <View className="items-center px-2" style={{ width: width }}>
+      <View
+        className="mb-10 overflow-hidden rounded-b-3xl"
+        style={{
+          height: height * 0.55,
+        }}
+      >
+        <ImageBackground
           source={item.image}
-          className="max-h-[400px]"
           style={{
-            width: width * 0.8,
-            height: width * 0.8,
+            width: width,
+            height: height * 0.9,
           }}
-          resizeMode="contain"
+          resizeMode="cover"
         />
       </View>
-      <View className="items-center pb-25 px-5">
-        <Text className="text-2xl font-bold text-textPrimary text-center mb-4 leading-8">
+      <View className="items-center px-4">
+        <Text className="text-3xl font-bold text-center mb-4 leading-snug">
           {item.title}
         </Text>
-        <Text className="text-base text-textSecondary text-center leading-6">
-          {item.subtitle}
-        </Text>
+        <Text className="text-center text-muted-foreground leading-6">{item.subtitle}</Text>
       </View>
     </View>
   );

@@ -4,7 +4,7 @@ import "./global.css";
  * Node modules
  */
 import React from "react";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -28,10 +28,10 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function HomeScreen() {
   return (
     <Container centered padded>
-      <Text className="text-2xl font-bold text-textPrimary mb-3">
+      <Text className="text-2xl font-bold mb-3">
         Welcome to Mood Tracker!
       </Text>
-      <Text className="text-base text-textSecondary text-center">
+      <Text className="text-center">
         Main app will be here
       </Text>
     </Container>
