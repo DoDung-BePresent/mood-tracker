@@ -22,6 +22,7 @@ import { RootStackParamList } from "@/types/navigation";
  */
 import { cn } from "@/utils/cn";
 import Button from "@/components/ui/Button";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const walkthroughData = [
   {
@@ -52,6 +53,7 @@ type Props = NativeStackScreenProps<RootStackParamList, "Walkthrough">;
 const WalkthroughScreen: React.FC<Props> = ({ navigation }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
+  const insets = useSafeAreaInsets();
 
   const onViewableItemsChanged = useRef(({ viewableItems }: any) => {
     if (viewableItems.length > 0) {
@@ -65,18 +67,18 @@ const WalkthroughScreen: React.FC<Props> = ({ navigation }) => {
     if (currentIndex < walkthroughData.length - 1) {
       flatListRef.current?.scrollToIndex({ index: currentIndex + 1 });
     } else {
-      navigation.replace("Home");
+      navigation.replace("Welcome");
     }
   };
 
   const handleSkip = () => {
-    navigation.replace("Home");
+    navigation.replace("Welcome");
   };
 
   const isLastSlide = currentIndex === walkthroughData.length - 1;
 
   return (
-    <Container>
+    <Container useSafeArea={false} className="bg-background">
       {/* FlatList for walkthrough items */}
       <FlatList
         ref={flatListRef}
@@ -88,10 +90,14 @@ const WalkthroughScreen: React.FC<Props> = ({ navigation }) => {
         viewabilityConfig={viewConfig}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <WalkthroughItem item={item} />}
+        className="flex-1"
       />
 
       {/* Bottom section */}
-      <View className="pb-5">
+      <View
+        className="bg-background"
+        style={{ paddingBottom: insets.bottom > 0 ? insets.bottom : 20 }}
+      >
         {/* Pagination */}
         <WalkthroughPagination
           data={walkthroughData}
@@ -99,18 +105,17 @@ const WalkthroughScreen: React.FC<Props> = ({ navigation }) => {
         />
 
         {/* Action buttons */}
-        <View className="flex-row gap-5 px-5 justify-between items-center border-t border-border pt-5">
-          <Button variant="secondary" onPress={handleSkip}>
-            Skip
-          </Button>
-
-          <Button
-            variant="primary"
-            onPress={handleNext}
-            className="min-w-[120px]"
-          >
-            {isLastSlide ? "Let's Get Started" : "Continue"}
-          </Button>
+        <View className="flex-row px-5 justify-between items-center border-t border-border pt-5">
+          <View className="w-1/2 pr-2.5">
+            <Button variant="secondary" onPress={handleSkip} className="w-full">
+              Skip
+            </Button>
+          </View>
+          <View className="w-1/2 pl-2.5">
+            <Button variant="primary" onPress={handleNext} className="w-full">
+              {isLastSlide ? "Let's Get Started" : "Continue"}
+            </Button>
+          </View>
         </View>
       </View>
     </Container>

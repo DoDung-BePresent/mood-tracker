@@ -29,7 +29,7 @@ const Button: React.FC<ButtonProps> = ({
     <TouchableOpacity
       className={cn(
         // Base styles
-        "items-center justify-center rounded-full flex-1",
+        "items-center justify-center rounded-full",
 
         // Variants
         variant === "primary" && ["bg-primary", disabled && "bg-primary/50"],
@@ -37,6 +37,7 @@ const Button: React.FC<ButtonProps> = ({
           "bg-secondary",
           disabled && "bg-background/50",
         ],
+        variant === "outline" && ["border-[2px] border-border"],
 
         // Sizes
         size === "sm" && "px-4 py-2",
@@ -59,6 +60,7 @@ const Button: React.FC<ButtonProps> = ({
             // Text colors based on variant
             variant === "primary" && "text-primary-foreground",
             variant === "secondary" && "text-secondary-foreground",
+            variant === "outline" && "text-muted-foreground",
 
             // Text sizes
             size === "sm" && "text-sm",

@@ -28,7 +28,7 @@ const WalkthroughItem: React.FC<WalkthroughItemProps> = ({ item }) => {
       <View
         className="mb-10 overflow-hidden rounded-b-3xl"
         style={{
-          height: height * 0.55,
+          height: height * 0.6,
         }}
       >
         <ImageBackground
@@ -41,10 +41,8 @@ const WalkthroughItem: React.FC<WalkthroughItemProps> = ({ item }) => {
         />
       </View>
       <View className="items-center px-4">
-        <Text className="text-3xl font-bold text-center mb-4 leading-snug">
-          {item.title}
-        </Text>
-        <Text className="text-center text-muted-foreground leading-6">{item.subtitle}</Text>
+        <Text className="title text-center !text-3xl">{item.title}</Text>
+        <Text className="sub-title text-center">{item.subtitle}</Text>
       </View>
     </View>
   );

@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
+@layer components {
+  .section {
+    @apply mb-8;
+  }
+}
 
+@layer utilities {
+  .title {
+    @apply text-4xl font-bold mb-4 !leading-snug;
+  }
+  .title-sm {
+    @apply text-3xl font-bold mb-4 !leading-snug;
+  }
+  .sub-title {
+    @apply text-muted-foreground !leading-relaxed;
+  }
 }
