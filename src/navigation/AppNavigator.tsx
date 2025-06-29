@@ -1,49 +1,24 @@
 import React from "react";
-import { Text, ActivityIndicator, Alert, View } from "react-native";
+import { ActivityIndicator, View, TouchableOpacity } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Add } from "iconsax-react-nativejs";
 
 import { useAuth } from "@/hooks/useAuth";
 import Container from "@/components/Container";
 import { RootStackParamList } from "@/types/navigation";
 
 /**
- * Screens
+ * Screens & Navigators
  */
 import WelcomeScreen from "@/screens/auth/WelcomeScreen";
 import SignUpScreen from "@/screens/auth/SignUpScreen";
 import SignInScreen from "@/screens/auth/SignInScreen";
 import WalkthroughScreen from "@/screens/walkthrough/WalkthroughScreen";
-import { signOut } from "@/services/authService";
-import Button from "@/components/ui/Button";
 import AccountSetupNavigator from "./AccountSetupNavigator";
 import { SetupProvider } from "@/contexts/SetupContext";
+import MainTabNavigator from "./MainTabNavigator";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
-function HomeScreen() {
-  const handleLogout = async () => {
-    try {
-      await signOut();
-      // AuthProvider sẽ tự động xử lý việc chuyển màn hình
-    } catch (error: any) {
-      Alert.alert("Logout Error", error.message);
-    }
-  };
-
-  return (
-    <Container centered padded>
-      <View className="items-center">
-        <Text className="text-2xl font-bold mb-3">
-          Welcome to Mood Tracker!
-        </Text>
-        <Text className="text-center mb-8">Main app will be here</Text>
-        <Button variant="secondary" onPress={handleLogout}>
-          Sign Out
-        </Button>
-      </View>
-    </Container>
-  );
-}
 
 export default function AppNavigator() {
   const { user, profile, isLoading } = useAuth();
@@ -60,7 +35,19 @@ export default function AppNavigator() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {user ? (
         profile?.is_setup_complete ? (
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Home">
+            {() => (
+              <View className="flex-1 relative">
+                <MainTabNavigator />
+                <TouchableOpacity
+                  className="absolute bottom-[100px] right-5 bg-primary w-16 h-16 rounded-full items-center justify-center shadow-lg shadow-black/20"
+                  onPress={() => alert("Add new mood!")}
+                >
+                  <Add size={32} color="white" variant="Bold" />
+                </TouchableOpacity>
+              </View>
+            )}
+          </Stack.Screen>
         ) : (
           <Stack.Screen name="AccountSetup">
             {() => (
