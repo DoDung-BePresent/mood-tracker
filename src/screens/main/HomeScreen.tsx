@@ -1,24 +1,21 @@
 // filepath: src/screens/main/HomeScreen.tsx
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import Container from "@/components/Container";
-import { useAuth } from "@/hooks/useAuth";
+import MainHeader from "@/components/MainHeader";
+import { SearchNormal1 } from "iconsax-react-nativejs";
 
 const HomeScreen = () => {
-  const { profile } = useAuth();
-
   return (
     <Container>
-      {/* Header */}
-      <View className="flex-row justify-between items-center p-5">
-        <View>
-          <Text className="text-2xl font-bold text-text">
-            Hi, {profile?.username || "User"}!
-          </Text>
-          <Text className="text-muted-foreground">Let's check in</Text>
-        </View>
-        <Image source={require("@/assets/logo.png")} className="w-12 h-12" />
-      </View>
+      <MainHeader
+        title="Home"
+        rightAction={
+          <TouchableOpacity onPress={() => alert("Search!")}>
+            <SearchNormal1 size={24} color="#1f2937" />
+          </TouchableOpacity>
+        }
+      />
 
       {/* Empty State Content */}
       <View className="flex-1 justify-center items-center">

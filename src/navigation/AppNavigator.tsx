@@ -37,13 +37,25 @@ export default function AppNavigator() {
         profile?.is_setup_complete ? (
           <Stack.Screen name="Home">
             {() => (
-              <View className="flex-1 relative">
+              <View
+                className="flex-1"
+                style={{
+                  position: "relative",
+                }}
+              >
                 <MainTabNavigator />
                 <TouchableOpacity
-                  className="absolute bottom-[100px] right-5 bg-primary w-16 h-16 rounded-full items-center justify-center shadow-lg shadow-black/20"
+                  className="bg-primary rounded-full items-center justify-center shadow-lg shadow-black/20"
                   onPress={() => alert("Add new mood!")}
+                  style={{
+                    position: "absolute",
+                    right: 20,
+                    bottom: 140,
+                    width: 50,
+                    height: 50,
+                  }}
                 >
-                  <Add size={32} color="white" variant="Bold" />
+                  <Add size={32} color="white" />
                 </TouchableOpacity>
               </View>
             )}
