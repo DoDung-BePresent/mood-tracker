@@ -1,5 +1,10 @@
 import React from "react";
-import { TouchableOpacity, Text, TouchableWithoutFeedback } from "react-native";
+import {
+  TouchableOpacity,
+  Text,
+  TouchableWithoutFeedback,
+  TouchableOpacityProps,
+} from "react-native";
 import Animated, {
   useAnimatedStyle,
   withSpring,
@@ -8,7 +13,7 @@ import Animated, {
 import { TickSquare } from "iconsax-react-nativejs";
 import { cn } from "@/utils/cn";
 
-interface CheckboxProps {
+interface CheckboxProps extends TouchableOpacityProps {
   label: React.ReactNode;
   checked: boolean;
   onCheckedChange: (checked: boolean) => void;
@@ -20,6 +25,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   checked,
   onCheckedChange,
   className,
+  ...props
 }) => {
   const animatedContainerStyle = useAnimatedStyle(() => {
     return {
@@ -44,6 +50,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
       className={cn("flex-row gap-3 items-center space-x-3 my-2", className)}
       onPress={() => onCheckedChange(!checked)}
       activeOpacity={1}
+      {...props}
     >
       <Animated.View
         className="h-6 w-6 rounded-md justify-center items-center border-2 !border-primary"

@@ -86,6 +86,7 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
                   error={errors.email?.message}
                   autoCapitalize="none"
                   keyboardType="email-address"
+                  editable={!loading}
                 />
               )}
             />
@@ -103,6 +104,7 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
                   error={errors.password?.message}
                   secureTextEntry
                   description="Password must be at least 6 characters"
+                  editable={!loading}
                 />
               )}
             />
@@ -114,6 +116,7 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
                   checked={value}
                   onCheckedChange={onChange}
                   className="mb-4"
+                  disabled={loading}
                   label={
                     <Text className="text-muted-foreground">
                       I agree to Lumio{" "}

@@ -30,6 +30,7 @@ const Input: React.FC<InputProps> = ({
   description,
   ...props
 }) => {
+  const [isFocused, setIsFocused] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const isPasswordInput = secureTextEntry;
@@ -43,8 +44,9 @@ const Input: React.FC<InputProps> = ({
       {label && <Text className="font-semibold mb-2">{label}</Text>}
       <View
         className={cn(
-          "flex-row items-center h-14 px-4 bg-gray-50 rounded-lg border-2 focus-within:border-primary",
+          "flex-row items-center h-14 px-4 bg-gray-50 rounded-lg border-2",
           error ? "border-destructive" : "border-transparent",
+          isFocused && !error ? "border-primary" : "",
           size === "lg" && "h-24",
           className
         )}
@@ -53,6 +55,8 @@ const Input: React.FC<InputProps> = ({
         <TextInput
           className={cn("flex-1 h-full text-text", size === "lg" && "text-4xl")}
           secureTextEntry={isPasswordInput && !isPasswordVisible}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           placeholderTextColor="#A9A9A9"
           cursorColor="#16a34a"
           {...props}

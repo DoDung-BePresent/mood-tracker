@@ -32,7 +32,7 @@ const SignInScreen: React.FC<Props> = ({ navigation }) => {
     formState: { errors, isValid },
   } = useForm<SignInCredentials>({
     resolver: zodResolver(SignInSchema),
-    mode: "onBlur",
+    mode: "onTouched",
     defaultValues: {
       email: "",
       password: "",
@@ -82,6 +82,7 @@ const SignInScreen: React.FC<Props> = ({ navigation }) => {
                   error={errors.email?.message}
                   autoCapitalize="none"
                   keyboardType="email-address"
+                  editable={!loading}
                 />
               )}
             />
@@ -98,6 +99,7 @@ const SignInScreen: React.FC<Props> = ({ navigation }) => {
                   value={value}
                   error={errors.password?.message}
                   secureTextEntry
+                  editable={!loading}
                 />
               )}
             />
