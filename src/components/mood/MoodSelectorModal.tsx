@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import Modal from "@/components/ui/Modal";
 import Button from "@/components/ui/Button";
 import { MOOD_OPTIONS } from "@/constants/moods";
@@ -30,7 +30,7 @@ const MoodSelectorModal: React.FC<MoodSelectorModalProps> = ({
   return (
     <Modal visible={visible} onClose={onClose}>
       <View className="items-center">
-        <Text className="text-xl font-bold text-text mb-2">
+        <Text className="text-xl font-bold text-text mb-2 text-center">
           How do you feel {isToday ? "today" : `on ${displayDate}`}?
         </Text>
 
@@ -41,12 +41,11 @@ const MoodSelectorModal: React.FC<MoodSelectorModalProps> = ({
               className="items-center"
               onPress={() => onSelectMood(mood.type)}
             >
-              <View
-                className="w-12 h-12 rounded-full items-center justify-center mb-2"
-                style={{ backgroundColor: mood.color }}
-              >
-                <Text className="text-2xl">{mood.emoji}</Text>
-              </View>
+              <Image
+                source={mood.emoji}
+                className="w-12 h-12"
+                resizeMode="contain"
+              />
             </TouchableOpacity>
           ))}
         </View>

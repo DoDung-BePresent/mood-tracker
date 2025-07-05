@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from "react-native";
+
 export type MoodType = "terrible" | "bad" | "okay" | "good" | "great";
 
 export interface Mood {
@@ -9,7 +11,6 @@ export interface Mood {
 
 export interface MoodOption {
   type: MoodType;
-  emoji: string;
+  emoji: ImageSourcePropType; // Thay đổi từ string thành ImageSourcePropType
   label: string;
-  color: string;
 }

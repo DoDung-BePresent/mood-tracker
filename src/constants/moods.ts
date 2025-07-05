@@ -3,32 +3,27 @@ import { MoodOption } from "@/types/mood";
 export const MOOD_OPTIONS: MoodOption[] = [
   {
     type: "terrible",
-    emoji: "😡",
+    emoji: require("@/assets/icons/terrible-emoji.png"), // Thay đổi từ string thành require
     label: "Terrible",
-    color: "#ef4444", // red-500
   },
   {
     type: "bad",
-    emoji: "🙁",
+    emoji: require("@/assets/icons/bad-emoji.png"),
     label: "Bad",
-    color: "#f97316", // orange-500
   },
   {
     type: "okay",
-    emoji: "😐",
+    emoji: require("@/assets/icons/okay-emoji.png"),
     label: "Okay",
-    color: "#eab308", // yellow-500
   },
   {
     type: "good",
-    emoji: "🙂",
+    emoji: require("@/assets/icons/good-emoji.png"),
     label: "Good",
-    color: "#84cc16", // lime-500
   },
   {
     type: "great",
-    emoji: "😊",
+    emoji: require("@/assets/icons/great-emoji.png"),
     label: "Great",
-    color: "#22c55e", // green-500
   },
 ];
